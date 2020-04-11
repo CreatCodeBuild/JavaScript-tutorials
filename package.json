@@ -1,0 +1,24 @@
+{
+  "name": "javascript-tutorials",
+  "version": "1.0.0",
+  "description": "My JavaScript teaching materials",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tricks": "node tricks/all.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CreatCodeBuild/JavaScript-tutorials.git"
+  },
+  "author": "github.com/CreatCodeBuild",
+  "bugs": {
+    "url": "https://github.com/CreatCodeBuild/JavaScript-tutorials/issues"
+  },
+  "homepage": "https://github.com/CreatCodeBuild/JavaScript-tutorials#readme",
+  "devDependencies": {
+    "@types/node": "^13.11.1",
+    "mocha": "^7.1.1",
+    "ts-node": "^8.8.2",
+    "typescript": "^3.8.3"
+  }
+}

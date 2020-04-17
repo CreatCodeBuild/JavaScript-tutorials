@@ -1,53 +1,84 @@
 /*
 
-for loop 的3种用法以及应用场景
+for loop 的4种用法以及应用场景
 
 1. for(let i = 0; i < N; i++)
 2. for(let key in object)
-3. for(let item in iterable)
+3. forEach(lambda)
+4. for(let item in iterable)
 
-第三项可以涉及到非常多的拓展，这次我们只讲最基础的。
+第4项可以涉及到非常多的拓展，这次我们只讲最基础的。
 
 */
 
-function forI(N) {
-    let a = [];
-    for (let i = 0; i < N; i++) {
+// 首先我们来看最普通的 for 循环
+// Let's first look at the most basic for loop
+(function forI() {
+    process.stdout.write('for i++: ');
+    for (let i = 0; i < 5; i++) {
         process.stdout.write(`${i} `);
-        a.push(i * i);
     }
     process.stdout.write('\n');
-    return a;
-}
+})();
 
+// Now, let's look at for in.
 function forIn(obj) {
+    process.stdout.write('for in: ');
     for (let key in obj) {
         process.stdout.write(`${key}:${obj[key]} | `);
     }
     process.stdout.write('\n');
-}
+};
+forIn([1, 2, 3]);
+forIn({ "a": "x", "b": "y" });
 
 function forOf(obj) {
+    process.stdout.write('for of: ');
     for (let item of obj) {
         process.stdout.write(`${item} | `);
     }
     process.stdout.write('\n');
 }
-
-let a = forI(5);
-forIn(a);
-forOf(a);
-
-forIn({ 'a': 1, 'b': 2, 'c': 3 });
-
-// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols
+forOf([1, 2, 3]);
 try {
-    forOf({ 'a': 1, 'b': 2, 'c': 3 });
+    forOf({});
 } catch (e) {
-    console.log(e);
+    console.log(e.message);
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols
 }
 
-// 所以说，JS自带数据结构中，有哪些实现了 Iteration Protocol 呢？
+
+// Now, let's test how fast they are.
+(function SpeedTest() {
+    const N = 10000000;
+    let a = [];
+    for (let i = 0; i < N; i++) {
+        a.push(i);
+    }
+
+    let t1 = new Date();
+    for (let i = 0; i < a.length; i++) { }
+    let t2 = new Date() - t1;
+    console.log('for loop speed', t2);
+
+    let t3 = new Date();
+    for (let x in a) { }
+    let t4 = new Date() - t3;
+    console.log('for   in speed', t4, t4 / t2);
+
+    let t5 = new Date();
+    a.forEach(() => { });
+    let t6 = new Date() - t5;
+    console.log('for each speed', t6, t6 / t2);
+
+    let t7 = new Date();
+    for (let x of a) { }
+    let t8 = new Date() - t7;
+    console.log('for   of speed', t8, t8 / t2);
+})();
+
+
+// JS自带数据结构中，有哪些实现了 Iteration Protocol 呢？
 // 或者说，有哪些数据结构是 Iterable 呢？
 // What built in data structures in JavaScript implement Iteration Protocol?
 // In other words, what data structures are iterable?
@@ -55,17 +86,8 @@ try {
 // String, Array, TypedArray, Map, and Set are all built-in iterables
 
 // String
-for(let char of "abc d一二三") {
-    process.stdout.write(`${char} | `);
-}
-process.stdout.write('\n');
-console.log("一二三".length);
 
 // Array
-for(let element of ["a", "b", "c"]) {
-    process.stdout.write(`${element} | `);
-}
-process.stdout.write('\n');
 
 // TypedArray
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray

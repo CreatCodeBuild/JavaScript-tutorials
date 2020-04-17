@@ -5,7 +5,7 @@ for loop 的4种用法以及应用场景
 1. for(let i = 0; i < N; i++)
 2. for(let key in object)
 3. forEach(lambda)
-4. for(let item in iterable)
+4. for(let item of iterable)
 
 第4项可以涉及到非常多的拓展，这次我们只讲最基础的。
 
@@ -30,7 +30,7 @@ function forIn(obj) {
     process.stdout.write('\n');
 };
 forIn([1, 2, 3]);
-forIn({ "a": "x", "b": "y" });
+forIn({ a: "x", "b": "y", 3: "y", 1: "x" });
 
 function forOf(obj) {
     process.stdout.write('for of: ');
@@ -49,7 +49,7 @@ try {
 
 
 // Now, let's test how fast they are.
-(function SpeedTest() {
+function SpeedTest() {
     const N = 10000000;
     let a = [];
     for (let i = 0; i < N; i++) {
@@ -75,7 +75,8 @@ try {
     for (let x of a) { }
     let t8 = new Date() - t7;
     console.log('for   of speed', t8, t8 / t2);
-})();
+};
+SpeedTest();
 
 
 // JS自带数据结构中，有哪些实现了 Iteration Protocol 呢？

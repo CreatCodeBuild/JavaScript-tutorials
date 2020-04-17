@@ -47,5 +47,38 @@ try {
     console.log(e);
 }
 
+// 所以说，JS自带数据结构中，有哪些实现了 Iteration Protocol 呢？
+// 或者说，有哪些数据结构是 Iterable 呢？
+// What built in data structures in JavaScript implement Iteration Protocol?
+// In other words, what data structures are iterable?
 
+// String, Array, TypedArray, Map, and Set are all built-in iterables
 
+// String
+for(let char of "abc d一二三") {
+    process.stdout.write(`${char} | `);
+}
+process.stdout.write('\n');
+console.log("一二三".length);
+
+// Array
+for(let element of ["a", "b", "c"]) {
+    process.stdout.write(`${element} | `);
+}
+process.stdout.write('\n');
+
+// TypedArray
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray
+
+// Map
+
+// WeakMap
+
+// Set
+
+// WeakSet
+
+// 其实还有一种原生 Iterable, 就是生成器
+// 改日有幸再讲。
+// There is one more native Iterable, that is Generator.
+// Let's talk about it some episode in the future.

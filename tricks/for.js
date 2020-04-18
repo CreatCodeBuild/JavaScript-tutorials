@@ -32,6 +32,16 @@ function forIn(obj) {
 forIn([1, 2, 3]);
 forIn({ a: "x", "b": "y", 3: "y", 1: "x" });
 
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach
+function forEach(obj) {
+    process.stdout.write('for each: ');
+    obj.forEach((currentValue, index, array) => {
+        process.stdout.write(`${currentValue}:${index}:[${array}] | `);
+    });
+    process.stdout.write('\n');
+}
+forEach([1, 2, 3]);
+
 function forOf(obj) {
     process.stdout.write('for of: ');
     for (let item of obj) {

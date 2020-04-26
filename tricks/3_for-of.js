@@ -1,10 +1,9 @@
 /*
 
-这一次，让我们来看看 for of 的各种用法、应用场景
+让我们来看看原生支持 for of 的数据结构
 
 */
 
-// 首先，让我们来看看原生支持 for of 的数据结构
 function inlineWrite() {
     for (let x of arguments) {
         process.stdout.write(`${x} | `)
@@ -29,6 +28,16 @@ for (let x of s) {
 console.log();
 
 // TypedArray
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray
+const typedArray = new Int8Array(10);
+typedArray[0] = 32;
+console.log('typedArray:', typedArray);
+for(let x of typedArray) {
+    inlineWrite(x)
+}
+console.log();
+
+
 
 // Map
 let m = new Map();
@@ -36,7 +45,7 @@ m.set(1, "a"); m.set(2, "b"); m.set(3, "c");
 inlineWrite("   Map:")
 for (let x of m) {
     // x is an 2 length Array: [key, value] becuase there is no tuple in JavaScript
-    inlineWrite(x[0], x[1]);
+    inlineWrite(`${x[0]}->${x[1]}`);
 }
 console.log();
 
@@ -48,3 +57,7 @@ for (let x of set) {
     inlineWrite(x);
 }
 console.log();
+
+
+// Iteration Protocol
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols
